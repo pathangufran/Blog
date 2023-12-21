@@ -1,0 +1,19 @@
+<!-- blog/templates/blog/post_detail.html -->
+{% extends 'info/base.html' %}
+
+{% block content %}
+  <div class="card mt-4">
+    <div class="card-body">
+      <h2 class="card-title">{{ post.title }}</h2>
+      <p class="card-text"><small class="text-muted">{{ post.pub_date }}</small></p>
+      <p class="card-text">{{ post.content }}</p>
+    </div>
+  </div>
+{% endblock %}
+
+{% block delete_link %}
+  <!-- Override the delete_link block to include the Delete Post link -->
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'post_delete' pk=post.pk %}">Delete Post</a>
+  </li>
+{% endblock %}

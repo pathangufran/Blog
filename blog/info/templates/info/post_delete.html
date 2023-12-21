@@ -1,0 +1,17 @@
+<!-- blog/templates/blog/post_confirm_delete.html -->
+{% extends 'info/base.html' %}
+
+{% block content %}
+  <div class="card mt-4">
+    <div class="card-body">
+      <h2 class="card-title">{{ post.title }}</h2>
+      <p class="card-text"><small class="text-muted">{{ post.pub_date }}</small></p>
+      <p class="card-text">{{ post.content }}</p>
+      <form method="post" action="{% url 'post_delete' pk=post.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{% url 'post_list' %}" class="btn btn-secondary">Cancel</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

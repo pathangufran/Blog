@@ -1,0 +1,38 @@
+<!-- blog/templates/blog/post_edit.html -->
+{% extends 'info/base.html' %}
+
+{% block content %}
+  <div class="card mt-4" style="max-width: 400px; margin: 0 auto;">
+    <div class="card-body">
+      <h2 class="card-title">{{ form.instance.title|default:"New Post" }}</h2>
+      <form method="POST" class="post-form" id="postForm">
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+            {{ field }}
+            {% if field.errors %}
+              <small class="text-danger">{{ field.errors.0 }}</small>
+            {% endif %}
+          </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary btn-sm" style="">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    ['id_title', 'id_content'].forEach(function(id) {
+      document.getElementById(id).classList.add('form-control', 'form-control-sm');
+    });
+
+    document.getElementById('postForm').addEventListener('submit', function(event) {
+      ['id_title', 'id_content'].forEach(function(id) {
+        if (document.getElementById(id).value.trim() === '') {
+          event.preventDefault();
+          document.getElementById(id + 'Error').innerText = 'This field is required.';
+        }
+      });
+    });
+  </script>
+{% endblock %}
