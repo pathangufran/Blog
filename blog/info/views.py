@@ -5,11 +5,11 @@ from .forms import PostForm
 
 def post_list(request):
     posts = Post.objects.all()
-    return render(request, 'studio/post_list.html', {'posts': posts})
+    return render(request, 'info/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'studio/post_detail.html', {'post': post})
+    return render(request, 'info/post_detail.html', {'post': post})
 
 def post_new(request):
     if request.method == "POST":
@@ -20,7 +20,7 @@ def post_new(request):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
-    return render(request, 'studio/post_edit.html', {'form': form})
+    return render(request, 'info/post_edit.html', {'form': form})
 
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -32,7 +32,7 @@ def post_edit(request, pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'studio/post_edit.html', {'form': form})
+    return render(request, 'info/post_edit.html', {'form': form})
 
 def post_delete(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -41,4 +41,4 @@ def post_delete(request, pk):
         post.delete()
         return redirect('post_list')
 
-    return render(request, 'studio/post_delete.html', {'post': post})
+    return render(request, 'info/post_delete.html', {'post': post})
