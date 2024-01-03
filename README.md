@@ -39,3 +39,42 @@ Follow the steps below to set up and run the project:
   - python3 manage.py runserver
 
 
+## Dockerization
+
+This project is Dockerized for easy deployment and development. Follow the steps below to set up and run the application using Docker and Docker Compose.
+
+### Prerequisites
+
+- Docker
+- Docker Compose
+
+### Steps
+
+1. **Clone the Repository:**
+
+    ```bash
+    git clone https://github.com/pathangufran/Blog.git
+    cd blog
+    ```
+
+2. **Create a Docker Image:**
+
+    Build the Docker image for the Django application.
+
+    ```bash
+    docker-compose build
+    ```
+
+3. **Run the Application:**
+
+    Start the Docker services defined in the `docker-compose.yml` file.
+
+    ```bash
+    docker-compose up
+    ```
+
+    The application will be accessible at [http://localhost:8000](http://localhost:8000).
+
+4. **Access the Application:**
+
+    Open your web browser and go to [http://localhost:8000](http://localhost:8000) to access the Django application.
